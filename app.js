@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var cors = require('cors')
 
 
 var indexRouter = require('./app_server/routes/index');
@@ -12,6 +12,15 @@ var authRouter = require('./app_server/routes/api/auth')
 
 
 var app = express();
+
+
+app.use(cors(
+  {
+    origin: ["https://resume-builder-lilac-nu.vercel.app"],
+    method: ["POST","GET"],
+    credentials: true
+  }
+))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
